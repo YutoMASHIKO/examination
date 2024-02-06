@@ -48,4 +48,16 @@ class EmployeeRestControllerTest {
       .body("firstName", equalTo("Taro"))
       .body("lastName", equalTo("Yamada"));
   }
+
+  @Test
+  void idが2の人を検索する場合() {
+    given()
+      .when()
+      .get("/v1/employees/2")
+      .then()
+      .status(HttpStatus.OK)
+      .body("id", equalTo("2"))
+      .body("firstName", equalTo("Jiro"))
+      .body("lastName", equalTo("Yamada"));
+  }
 }
