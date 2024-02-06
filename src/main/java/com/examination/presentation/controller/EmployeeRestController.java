@@ -30,6 +30,14 @@ public class EmployeeRestController {
 
   @GetMapping("v1/employees/{id}")
   public EmployeeResponse getEmployeeById(@PathVariable String id) {
-    return EmployeeResponse.createResponse(new Employee("1", "Taro", "Yamada"));
+    List<EmployeeResponse> employeeResponseList = List.of(
+        EmployeeResponse.createResponse(new Employee("1", "Taro", "Yamada")),
+        EmployeeResponse.createResponse(new Employee("2", "Jiro", "Yamada"))
+    );
+
+    return employeeResponseList.stream()
+      .filter(response -> id.equals(response.id()))
+      .findFirst()
+      .orElse(null);
   }
 }
