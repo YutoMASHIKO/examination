@@ -1,6 +1,6 @@
-package presentation.response;
+package com.examination.presentation.response;
 
-import domain.Employee;
+import com.examination.domain.Employee;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

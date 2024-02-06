@@ -1,6 +1,6 @@
-package presentation.response;
+package com.examination.presentation.response;
 
-import domain.Employee;
+import com.examination.domain.Employee;
 
 /**
  * 従業員を表すレスポンス用のオブジェクト.

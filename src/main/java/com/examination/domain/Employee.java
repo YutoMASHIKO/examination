@@ -1,4 +1,4 @@
-package domain;
+package com.examination.domain;
 
 /**
  * 従業員を表すオブジェクト.
