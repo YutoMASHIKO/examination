@@ -28,6 +28,12 @@ public class EmployeeRestController {
     );
   }
 
+  /**
+   * 指定したIDを持つ従業員の情報を取得します.
+   *
+   * @param id 取得したい従業員のID
+   * @return <{@link EmployeeResponse}>
+   */
   @GetMapping("v1/employees/{id}")
   public EmployeeResponse getEmployeeById(@PathVariable String id) {
     List<EmployeeResponse> employeeResponseList = List.of(
