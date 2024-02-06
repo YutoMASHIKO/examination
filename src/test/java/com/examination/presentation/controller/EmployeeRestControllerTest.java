@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.equalTo;
+import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 
 @WebMvcTest
 class EmployeeRestControllerTest {
@@ -22,7 +23,7 @@ class EmployeeRestControllerTest {
 
   @Test
   void 全件取得をする場合() {
-    RestAssuredMockMvc.given()
+    given()
       .when()
       .get("/v1/employees")
       .then()
@@ -34,5 +35,17 @@ class EmployeeRestControllerTest {
       .body("[1].id", equalTo("2"))
       .body("[1].firstName", equalTo("Jiro"))
       .body("[1].lastName", equalTo("Yamada"));
+  }
+
+  @Test
+  void idが1の人を検索する場合() {
+    given()
+      .when()
+      .get("/v1/employees/1")
+      .then()
+      .status(HttpStatus.OK)
+      .body("id", equalTo("1"))
+      .body("firstName", equalTo("Taro"))
+      .body("lastName", equalTo("Yamada"));
   }
 }
