@@ -21,7 +21,7 @@ class AllEmployeeUseCaseTest {
     List<Employee> expected = List.of(
       new Employee("1", "Taro", "Yamada"),
       new Employee("2", "Jiro", "Yamada")
-      );
+    );
 
     assertEquals(expected, actual);
   }
