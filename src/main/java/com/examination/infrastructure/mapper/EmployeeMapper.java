@@ -9,4 +9,7 @@ import org.apache.ibatis.annotations.Select;
 public interface EmployeeMapper {
   @Select("SELECT id, first_name, last_name FROM employees")
   List<Employee> getAllEmployees();
+
+  @Select("SELECT id, first_name, last_name FROM employees WHERE id = #{id}")
+  Employee getEmployeeById(String id);
 }

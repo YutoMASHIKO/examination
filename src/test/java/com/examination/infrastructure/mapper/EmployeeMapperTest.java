@@ -6,6 +6,7 @@ import java.util.List;
 import com.examination.domain.Employee;
 import com.github.database.rider.core.api.configuration.DBUnit;
 import com.github.database.rider.core.api.connection.ConnectionHolder;
+import com.github.database.rider.core.api.dataset.DataSet;
 import com.github.database.rider.junit5.api.DBRider;
 import org.flywaydb.core.Flyway;
 import org.junit.jupiter.api.BeforeAll;
@@ -35,6 +36,7 @@ class EmployeeMapperTest {
   }
 
   @Test
+  @DataSet(value = "datasets/employees.yml")
   void 全件取得をする場合() {
     List<Employee> actual = sut.getAllEmployees();
 
@@ -47,11 +49,12 @@ class EmployeeMapperTest {
   }
 
   @Test
+  @DataSet(value = "datasets/employee.yml")
   void idにより個別に社員情報を取得する場合() {
     Employee actual = sut.getEmployeeById("1");
 
     // 期待値の作成
-    Employee expected = new Employee("1", "Taro", "Yamada");
+    Employee expected = new Employee("1", "Taro", "Tanaka");
 
     // 検証
     assertEquals(expected, actual);
