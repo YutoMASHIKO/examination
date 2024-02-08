@@ -45,4 +45,15 @@ class EmployeeMapperTest {
 
     assertEquals(actual, expected);
   }
+
+  @Test
+  void idにより個別に社員情報を取得する場合() {
+    Employee actual = sut.getEmployeeById("1");
+
+    // 期待値の作成
+    Employee expected = new Employee("1", "Taro", "Yamada");
+
+    // 検証
+    assertEquals(expected, actual);
+  }
 }
