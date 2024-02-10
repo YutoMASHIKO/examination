@@ -1,6 +1,7 @@
 package com.examination.presentation.controller;
 
 import com.examination.application.GetAllEmployeesUseCase;
+import com.examination.application.GetEmployeeUseCase;
 import com.examination.domain.Employee;
 import com.examination.presentation.response.EmployeeResponse;
 import java.util.List;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class EmployeeRestController {
   private final GetAllEmployeesUseCase getAllEmployeesUseCase;
+  private final GetEmployeeUseCase getEmployeeUseCase;
 
   /**
    * すべての従業員を取得します.
@@ -40,14 +42,7 @@ public class EmployeeRestController {
    */
   @GetMapping("v1/employees/{id}")
   public EmployeeResponse getEmployeeById(@PathVariable String id) {
-    List<EmployeeResponse> employeeResponseList = List.of(
-        EmployeeResponse.createResponse(new Employee("1", "Taro", "Yamada")),
-        EmployeeResponse.createResponse(new Employee("2", "Jiro", "Yamada"))
-    );
-
-    return employeeResponseList.stream()
-      .filter(response -> id.equals(response.id()))
-      .findFirst()
-      .orElse(null);
+    Employee employee = getEmployeeUseCase.getEmployeeById(id);
+    return EmployeeResponse.createResponse(employee);
   }
 }

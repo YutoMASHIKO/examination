@@ -1,6 +1,7 @@
 package com.examination.presentation.controller;
 
 import com.examination.application.GetAllEmployeesUseCase;
+import com.examination.application.GetEmployeeUseCase;
 import com.examination.domain.Employee;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,6 +25,9 @@ class EmployeeRestControllerTest {
 
   @MockBean
   GetAllEmployeesUseCase getAllEmployeesUseCase;
+
+  @MockBean
+  GetEmployeeUseCase getEmployeeUseCase;
 
   @BeforeEach
   void setup() {
@@ -56,6 +60,9 @@ class EmployeeRestControllerTest {
 
   @Test
   void idが1の人を検索する場合() {
+    when(getEmployeeUseCase.getEmployeeById("1"))
+      .thenReturn(new Employee("1", "Taro", "Yamada"));
+
     given()
       .when()
       .get("/v1/employees/1")
@@ -68,6 +75,9 @@ class EmployeeRestControllerTest {
 
   @Test
   void idが2の人を検索する場合() {
+    when(getEmployeeUseCase.getEmployeeById("2"))
+      .thenReturn(new Employee("2", "Jiro", "Yamada"));
+
     given()
       .when()
       .get("/v1/employees/2")
