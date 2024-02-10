@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AllEmployeeUseCase {
+public class GetAllEmployeesUseCase {
   public List<Employee> findAllEmployee() {
     return List.of(
       new Employee("1", "Taro", "Yamada"),

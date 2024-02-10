@@ -1,8 +1,7 @@
 package com.examination.presentation.controller;
 
-import com.examination.application.AllEmployeeUseCase;
+import com.examination.application.GetAllEmployeesUseCase;
 import com.examination.domain.Employee;
-import com.examination.presentation.response.EmployeeResponse;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +23,7 @@ class EmployeeRestControllerTest {
   MockMvc mockMvc;
 
   @MockBean
-  AllEmployeeUseCase allEmployeeUseCase;
+  GetAllEmployeesUseCase getAllEmployeesUseCase;
 
   @BeforeEach
   void setup() {
@@ -33,7 +32,7 @@ class EmployeeRestControllerTest {
 
   @Test
   void 全件取得をする場合() {
-    when(allEmployeeUseCase.findAllEmployee())
+    when(getAllEmployeesUseCase.findAllEmployee())
       .thenReturn(
         List.of(
           new Employee("1", "Taro", "Yamada"),

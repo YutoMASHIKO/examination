@@ -1,6 +1,6 @@
 package com.examination.presentation.controller;
 
-import com.examination.application.AllEmployeeUseCase;
+import com.examination.application.GetAllEmployeesUseCase;
 import com.examination.domain.Employee;
 import com.examination.presentation.response.EmployeeResponse;
 import java.util.List;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class EmployeeRestController {
-  private final AllEmployeeUseCase allEmployeeUseCase;
+  private final GetAllEmployeesUseCase getAllEmployeesUseCase;
 
   /**
    * すべての従業員を取得します.
@@ -26,7 +26,7 @@ public class EmployeeRestController {
   @GetMapping("v1/employees")
   @ResponseBody
   public List<EmployeeResponse> getAllEmployees() {
-    return allEmployeeUseCase.findAllEmployee()
+    return getAllEmployeesUseCase.findAllEmployee()
       .stream()
       .map(EmployeeResponse::createResponse)
       .toList();
