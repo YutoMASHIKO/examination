@@ -44,4 +44,16 @@ class EmployeeRepositoryImplTest {
 
     assertEquals(expected, actual);
   }
+
+  @Test
+  void 個別取得をする場合() {
+    when(employeeMapper.getEmployeeById("3"))
+      .thenReturn(new Employee("3", "Taro", "Tanaka"));
+
+    Employee expected = new Employee("3", "Taro", "Tanaka");
+
+    Employee actual = sut.getEmployeeById("3");
+
+    assertEquals(expected, actual);
+  }
 }
