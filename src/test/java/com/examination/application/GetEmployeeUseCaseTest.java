@@ -28,9 +28,9 @@ class GetEmployeeUseCaseTest {
     when(employeeRepository.getEmployeeById("1"))
       .thenReturn(new Employee("1", "Taro", "Yamada"));
 
-    Employee expected = new Employee("1", "Taro", "Yamada";
+    Employee expected = new Employee("1", "Taro", "Yamada");
 
-    Employee actual = sut.getEmployeeById();
+    Employee actual = sut.getEmployeeById("1");
 
     assertEquals(expected, actual);
   }

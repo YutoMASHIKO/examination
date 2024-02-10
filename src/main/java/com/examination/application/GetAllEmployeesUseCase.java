@@ -1,16 +1,17 @@
 package com.examination.application;
 
 import com.examination.domain.Employee;
+import com.examination.domain.EmployeeRepository;
+import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
+@RequiredArgsConstructor
 public class GetAllEmployeesUseCase {
+  private final EmployeeRepository employeeRepository;
+
   public List<Employee> findAllEmployee() {
-    return List.of(
-      new Employee("1", "Taro", "Yamada"),
-      new Employee("2", "Jiro", "Yamada")
-    );
+    return employeeRepository.getAllEmployees();
   }
 }
