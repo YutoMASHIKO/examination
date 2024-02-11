@@ -74,7 +74,7 @@ class EmployeeRepositoryImplTest {
 
     Employee expected = new Employee("3", "Hanako", "Shirato");
 
-    Employee actual = sut.createEmployee(new EmployeeEntity("3", "Hanako", "Shirato"));
+    Employee actual = sut.createEmployee(new Employee("3", "Hanako", "Shirato"));
 
     assertEquals(expected, actual);
   }

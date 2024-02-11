@@ -8,4 +8,6 @@ public interface EmployeeRepository {
   Employee getEmployeeById(String id);
 
   Long getNextId();
+
+  Employee createEmployee(Employee employee);
 }

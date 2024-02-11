@@ -27,4 +27,9 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
   public Long getNextId() {
     return employeeMapper.getNextId();
   }
+
+  @Override
+  public Employee createEmployee(Employee employee) {
+    return employee;
+  }
 }
