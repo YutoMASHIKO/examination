@@ -10,4 +10,6 @@ public interface EmployeeRepository {
   Long getNextId();
 
   Employee createEmployee(Employee employee);
+
+  void updateEmployee(Employee employee);
 }

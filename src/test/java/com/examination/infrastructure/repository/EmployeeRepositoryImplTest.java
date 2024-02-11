@@ -11,6 +11,7 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
@@ -77,5 +78,15 @@ class EmployeeRepositoryImplTest {
     Employee actual = sut.createEmployee(new Employee("3", "Hanako", "Shirato"));
 
     assertEquals(expected, actual);
+  }
+
+  @Test
+  void 従業員の更新を行う場合() {
+    when(employeeMapper.update(new EmployeeEntity("1", "Taro", "Tanaka")))
+      .thenReturn(1);
+
+    Employee employee = new Employee("1", "Taro", "Tanaka");
+
+    assertDoesNotThrow(() -> sut.updateEmployee(employee));
   }
 }

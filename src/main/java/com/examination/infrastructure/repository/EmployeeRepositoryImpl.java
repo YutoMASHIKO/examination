@@ -32,4 +32,9 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
   public Employee createEmployee(Employee employee) {
     return employee;
   }
+
+  @Override
+  public void updateEmployee(Employee employee) {
+
+  }
 }
