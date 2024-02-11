@@ -35,6 +35,15 @@ class EmployeeRestControllerTest {
   }
 
   @Test
+  void ルートURLへアクセスした場合() {
+    given()
+      .when()
+      .get("/")
+      .then()
+      .statusCode(200);
+  }
+
+  @Test
   void 全件取得をする場合() {
     when(getAllEmployeesUseCase.findAllEmployee())
       .thenReturn(
