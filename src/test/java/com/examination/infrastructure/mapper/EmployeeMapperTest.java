@@ -61,6 +61,14 @@ class EmployeeMapperTest {
 
   @Test
   @DataSet(value = "datasets/employees.yml")
+  void 次の従業員IDを取得する場合() {
+    Long actual = sut.getNextId();
+
+    assertEquals(3L, actual);
+  }
+
+  @Test
+  @DataSet(value = "datasets/employees.yml")
   @ExpectedDataSet(value = "datasets/insertEmployee.yml")
   void 従業員の新規登録をする場合() {
     Integer actual = sut.insert(new EmployeeEntity("3", "Hanako", "Shirato"));
