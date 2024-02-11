@@ -66,4 +66,16 @@ class EmployeeRepositoryImplTest {
 
     assertEquals(3L, actual);
   }
+
+  @Test
+  void 従業員の新規登録をする場合() {
+    when(employeeMapper.insert(new EmployeeEntity("3", "Hanako", "Shirato")))
+      .thenReturn(1);
+
+    Employee expected = new Employee("3", "Hanako", "Shirato");
+
+    Employee actual = sut.createEmployee(new EmployeeEntity("3", "Hanako", "Shirato"));
+
+    assertEquals(expected, actual);
+  }
 }
