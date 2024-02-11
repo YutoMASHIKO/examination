@@ -4,6 +4,7 @@ import com.examination.application.exception.EmployeeNotFoundException;
 import com.examination.domain.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 従業員を削除するユースケースを表現するサービスクラスです.
@@ -19,6 +20,7 @@ public class DeleteEmployeeUseCase {
    * @param id 削除対象の従業員ID
    * @throws EmployeeNotFoundException 指定されたIDの従業員が見つからない場合にスローされる例外
    */
+  @Transactional
   public void deleteEmployee(String id) {
     if (employeeRepository.getEmployeeById(id).isEmpty()) {
       throw new EmployeeNotFoundException(id);
