@@ -1,4 +1,24 @@
 package com.examination.presentation.request;
 
-public record CreateEmployeeRequest(String firstName, String lastName) {
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import org.hibernate.validator.constraints.Length;
+
+/**
+ * 新しい従業員を作成するために送信するリクエストを表すクラスです.
+ *
+ * @param firstName 従業員の名前
+ * @param lastName  従業員の名字
+ */
+public record CreateEmployeeRequest(
+    @NotBlank
+    @Length(max = 100)
+    @Pattern(regexp = "^[a-zA-Z]+$")
+    String firstName,
+
+    @NotBlank
+    @Length(max = 100)
+    @Pattern(regexp = "^[a-zA-Z]+$")
+    String lastName
+) {
 }
