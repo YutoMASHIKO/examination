@@ -1,7 +1,9 @@
 package com.examination.presentation.controller;
 
+import com.examination.application.CreateEmployeeUseCase;
 import com.examination.application.GetAllEmployeesUseCase;
 import com.examination.application.GetEmployeeUseCase;
+import com.examination.application.InsertEmployeeData;
 import com.examination.domain.Employee;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,14 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
 import static org.hamcrest.Matchers.equalTo;
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @WebMvcTest
@@ -30,6 +31,9 @@ class EmployeeRestControllerTest {
 
   @MockBean
   GetEmployeeUseCase getEmployeeUseCase;
+
+  @MockBean
+  CreateEmployeeUseCase createEmployeeUseCase;
 
   @BeforeEach
   void setup() {
@@ -97,5 +101,25 @@ class EmployeeRestControllerTest {
       .body("id", equalTo("2"))
       .body("firstName", equalTo("Jiro"))
       .body("lastName", equalTo("Yamada"));
+  }
+
+  @Test
+  void 社員の新規登録を行う場合() {
+    when(createEmployeeUseCase.createEmployee(new InsertEmployeeData("Hanako", "Shirato")))
+      .thenReturn(new Employee("3", "Hanako", "Shirato"));
+
+    given()
+      .contentType(MediaType.APPLICATION_JSON_VALUE)
+      .body("""
+        {
+        "firstName": "Hanako",
+        "lastName": "Shirato"
+        }
+        """)
+      .when()
+      .post("/v1/employees")
+      .then()
+      .statusCode(201)
+      .header("Location", equalTo("http://localhost:8080/v1/employees/3"));
   }
 }
