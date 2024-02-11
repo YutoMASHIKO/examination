@@ -86,4 +86,13 @@ class EmployeeMapperTest {
 
     assertEquals(1, actual);
   }
+
+  @Test
+  @DataSet(value = "datasets/employees.yml")
+  @ExpectedDataSet(value = "datasets/delete-employee.yml")
+  void 従業員の削除を行う場合() {
+    Integer actual = sut.delete("1");
+
+    assertEquals(1, actual);
+  }
 }
