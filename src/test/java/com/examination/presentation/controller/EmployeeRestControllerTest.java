@@ -16,6 +16,8 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.equalTo;
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @WebMvcTest
@@ -57,14 +59,14 @@ class EmployeeRestControllerTest {
       .when()
       .get("/v1/employees")
       .then()
+      .log().all()
       .status(HttpStatus.OK)
-      .body("$.size()", equalTo(2))
-      .body("[0].id", equalTo("1"))
-      .body("[0].firstName", equalTo("Taro"))
-      .body("[0].lastName", equalTo("Yamada"))
-      .body("[1].id", equalTo("2"))
-      .body("[1].firstName", equalTo("Jiro"))
-      .body("[1].lastName", equalTo("Yamada"));
+      .body("employees[0].id", equalTo("1"))
+      .body("employees[0].firstName", equalTo("Taro"))
+      .body("employees[0].lastName", equalTo("Yamada"))
+      .body("employees[1].id", equalTo("2"))
+      .body("employees[1].firstName", equalTo("Jiro"))
+      .body("employees[1].lastName", equalTo("Yamada"));
   }
 
   @Test

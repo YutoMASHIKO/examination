@@ -3,8 +3,8 @@ package com.examination.presentation.controller;
 import com.examination.application.GetAllEmployeesUseCase;
 import com.examination.application.GetEmployeeUseCase;
 import com.examination.domain.Employee;
+import com.examination.presentation.response.AllEmployeeResponse;
 import com.examination.presentation.response.EmployeeResponse;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,11 +39,8 @@ public class EmployeeRestController {
    */
   @GetMapping("v1/employees")
   @ResponseStatus(HttpStatus.OK)
-  public List<EmployeeResponse> getAllEmployees() {
-    return getAllEmployeesUseCase.findAllEmployee()
-      .stream()
-      .map(EmployeeResponse::createResponse)
-      .toList();
+  public AllEmployeeResponse getAllEmployees() {
+    return AllEmployeeResponse.createResponse(getAllEmployeesUseCase.findAllEmployee());
   }
 
   /**
