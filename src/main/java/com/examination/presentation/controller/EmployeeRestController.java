@@ -6,19 +6,31 @@ import com.examination.domain.Employee;
 import com.examination.presentation.response.EmployeeResponse;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 従業員情報を管理するためのコントローラー.
  */
 @RestController
+@RequestMapping("/")
 @RequiredArgsConstructor
 public class EmployeeRestController {
   private final GetAllEmployeesUseCase getAllEmployeesUseCase;
   private final GetEmployeeUseCase getEmployeeUseCase;
+
+  /**
+   * rootURLにアクセスされた際に、ステータスコード200を返します.
+   */
+  @GetMapping
+  @ResponseStatus(HttpStatus.OK)
+  public void accessRoot() {
+    // 何もしない
+  }
 
   /**
    * すべての従業員を取得します.
@@ -26,7 +38,7 @@ public class EmployeeRestController {
    * @return <{@link EmployeeResponse}>.
    */
   @GetMapping("v1/employees")
-  @ResponseBody
+  @ResponseStatus(HttpStatus.OK)
   public List<EmployeeResponse> getAllEmployees() {
     return getAllEmployeesUseCase.findAllEmployee()
       .stream()
@@ -41,6 +53,7 @@ public class EmployeeRestController {
    * @return <{@link EmployeeResponse}>
    */
   @GetMapping("v1/employees/{id}")
+  @ResponseStatus(HttpStatus.OK)
   public EmployeeResponse getEmployeeById(@PathVariable String id) {
     Employee employee = getEmployeeUseCase.getEmployeeById(id);
     return EmployeeResponse.createResponse(employee);
