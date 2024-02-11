@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class CreateEmployeeUseCase {
   private final EmployeeRepository employeeRepository;
 
-  public Employee createEmployee(CreateEmployee employee) {
+  public Employee createEmployee(InsertEmployeeData employee) {
     return employeeRepository.createEmployee(
       new Employee(
         employeeRepository.getNextId().toString(),

@@ -12,7 +12,7 @@ import org.mockito.MockitoAnnotations;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CreateEmployeeUseCaseTest {
+class CreateEmployeeDataUseCaseTest {
   @InjectMocks
   CreateEmployeeUseCase sut;
 
@@ -33,7 +33,7 @@ class CreateEmployeeUseCaseTest {
 
     Employee expected = new Employee("3", "Hanako", "Shirato");
 
-    Employee actual = sut.createEmployee(new CreateEmployee("Hanako", "Shirato"));
+    Employee actual = sut.createEmployee(new InsertEmployeeData("Hanako", "Shirato"));
 
     assertEquals(expected, actual);
   }
