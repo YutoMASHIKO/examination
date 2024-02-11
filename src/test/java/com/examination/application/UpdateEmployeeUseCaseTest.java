@@ -1,10 +1,12 @@
 package com.examination.application;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 import com.examination.application.data.UpdateEmployeeData;
 import com.examination.domain.Employee;
 import com.examination.domain.EmployeeRepository;
+import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -26,7 +28,7 @@ class UpdateEmployeeUseCaseTest {
   @Test
   void 従業員の更新を行う場合() {
     when(employeeRepository.getEmployeeById("1"))
-      .thenReturn(new Employee("1", "Taro", "Yamada"));
+      .thenReturn(Optional.of(new Employee("1", "Taro", "Yamada")));
 
     UpdateEmployeeData updateEmployeeData = new UpdateEmployeeData("1", "Ichiro", "Tanaka");
 
@@ -34,5 +36,14 @@ class UpdateEmployeeUseCaseTest {
 
     verify(employeeRepository, times(1))
       .updateEmployee(updateEmployeeData.convert(new Employee("1", "Taro", "Yamada")));
+  }
+
+  @Test
+  void 従業員idが存在せず従業員更新が行えない場合() {
+    when(employeeRepository.getEmployeeById("0")).thenReturn(Optional.empty());
+
+    UpdateEmployeeData updateEmployeeData = new UpdateEmployeeData("0", "Ichiro", "Tanaka");
+
+    assertThrows(EmployeeNotFoundException.class, () -> sut.update(updateEmployeeData));
   }
 }

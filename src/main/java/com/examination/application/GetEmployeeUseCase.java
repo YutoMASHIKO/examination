@@ -11,6 +11,7 @@ public class GetEmployeeUseCase {
   private final EmployeeRepository employeeRepository;
 
   public Employee getEmployeeById(String id) {
-    return employeeRepository.getEmployeeById(id);
+    return employeeRepository.getEmployeeById(id)
+      .orElseThrow(() -> new EmployeeNotFoundException(id));
   }
 }

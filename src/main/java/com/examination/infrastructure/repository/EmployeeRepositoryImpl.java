@@ -8,6 +8,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
+
+import static java.util.Objects.nonNull;
 
 @Repository
 @RequiredArgsConstructor
@@ -19,8 +22,11 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
   }
 
   @Override
-  public Employee getEmployeeById(String id) {
-    return employeeMapper.getEmployeeById(id).convert();
+  public Optional<Employee> getEmployeeById(String id) {
+    if (nonNull(employeeMapper.getEmployeeById(id))) {
+      return Optional.of(employeeMapper.getEmployeeById(id).convert());
+    }
+    return Optional.empty();
   }
 
   @Override

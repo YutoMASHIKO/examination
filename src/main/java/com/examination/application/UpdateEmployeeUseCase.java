@@ -13,8 +13,9 @@ public class UpdateEmployeeUseCase {
   public void update(UpdateEmployeeData updateEmployeeData) {
     employeeRepository.updateEmployee(
         updateEmployeeData.convert(
-            employeeRepository.getEmployeeById(updateEmployeeData.id())
-        )
+          employeeRepository.getEmployeeById(updateEmployeeData.id())
+            .orElseThrow(() -> new EmployeeNotFoundException(updateEmployeeData.id()))
+      )
     );
   }
 }

@@ -1,19 +1,21 @@
 package com.examination.infrastructure.repository;
 
-import com.examination.domain.Employee;
-import com.examination.infrastructure.entity.EmployeeEntity;
-import com.examination.infrastructure.mapper.EmployeeMapper;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
+
+import com.examination.domain.Employee;
+import com.examination.infrastructure.entity.EmployeeEntity;
+import com.examination.infrastructure.mapper.EmployeeMapper;
+import java.util.List;
+import java.util.Optional;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 class EmployeeRepositoryImplTest {
   @InjectMocks
@@ -47,16 +49,30 @@ class EmployeeRepositoryImplTest {
     assertEquals(expected, actual);
   }
 
-  @Test
-  void 個別取得をする場合() {
-    when(employeeMapper.getEmployeeById("3"))
-      .thenReturn(new EmployeeEntity("3", "Taro", "Tanaka"));
+  @Nested
+  class id検索 {
+    @Test
+    void idによる従業員の情報を取得できる場合() {
+      when(employeeMapper.getEmployeeById("3"))
+        .thenReturn(new EmployeeEntity("3", "Taro", "Tanaka"));
 
-    Employee expected = new Employee("3", "Taro", "Tanaka");
+      Optional<Employee> expected = Optional.of(new Employee("3", "Taro", "Tanaka"));
 
-    Employee actual = sut.getEmployeeById("3");
+      Optional<Employee> actual = sut.getEmployeeById("3");
 
-    assertEquals(expected, actual);
+      assertEquals(expected, actual);
+    }
+
+    @Test
+    void idによる従業員の情報を取得できない場合() {
+      when(employeeMapper.getEmployeeById("0")).thenReturn(null);
+
+      Optional<Employee> expected = Optional.empty();
+
+      Optional<Employee> actual = sut.getEmployeeById("0");
+
+      assertEquals(expected, actual);
+    }
   }
 
   @Test

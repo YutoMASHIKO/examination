@@ -1,11 +1,12 @@
 package com.examination.domain;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface EmployeeRepository {
   List<Employee> getAllEmployees();
 
-  Employee getEmployeeById(String id);
+  Optional<Employee> getEmployeeById(String id);
 
   Long getNextId();
 
