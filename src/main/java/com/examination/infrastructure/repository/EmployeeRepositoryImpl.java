@@ -1,29 +1,38 @@
 package com.examination.infrastructure.repository;
 
+import static java.util.Objects.nonNull;
+
 import com.examination.domain.Employee;
 import com.examination.domain.EmployeeRepository;
 import com.examination.infrastructure.entity.EmployeeEntity;
 import com.examination.infrastructure.exception.SqlExecutionException;
 import com.examination.infrastructure.mapper.EmployeeMapper;
+import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
-
-import static java.util.Objects.nonNull;
-
+/**
+ * 従業員リポジトリの実装クラスです.
+ */
 @Repository
 @RequiredArgsConstructor
 @Slf4j
 public class EmployeeRepositoryImpl implements EmployeeRepository {
   private final EmployeeMapper employeeMapper;
+
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public List<Employee> getAllEmployees() {
     return employeeMapper.getAllEmployees().stream().map(EmployeeEntity::convert).toList();
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Optional<Employee> getEmployeeById(String id) {
     if (nonNull(employeeMapper.getEmployeeById(id))) {
@@ -32,11 +41,17 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     return Optional.empty();
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Long getNextId() {
     return employeeMapper.getNextId();
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Employee createEmployee(Employee employee) {
     Integer num = employeeMapper.insert(new EmployeeEntity(employee.id(), employee.firstName(), employee.lastName()));
@@ -46,6 +61,9 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     return employee;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void updateEmployee(Employee employee) {
     Integer num = employeeMapper.update(new EmployeeEntity(employee.id(), employee.firstName(), employee.lastName()));
@@ -54,6 +72,9 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     }
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void deleteEmployee(String id) {
     Integer num = employeeMapper.delete(id);
