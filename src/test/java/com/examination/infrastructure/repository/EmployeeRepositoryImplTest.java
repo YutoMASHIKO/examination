@@ -57,4 +57,13 @@ class EmployeeRepositoryImplTest {
 
     assertEquals(expected, actual);
   }
+
+  @Test
+  void 次の授業員Idを取得する場合() {
+    when(employeeMapper.getNextId()).thenReturn(3L);
+
+    Long actual = sut.getNextId();
+
+    assertEquals(3L, actual);
+  }
 }
