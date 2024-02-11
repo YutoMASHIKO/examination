@@ -12,6 +12,7 @@ import com.examination.presentation.request.CreateEmployeeRequest;
 import com.examination.presentation.request.UpdateEmployeeRequest;
 import com.examination.presentation.response.AllEmployeeResponse;
 import com.examination.presentation.response.EmployeeResponse;
+import java.net.URI;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,8 +27,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import java.net.URI;
 
 /**
  * 従業員情報を管理するためのコントローラー.
@@ -54,7 +53,7 @@ public class EmployeeRestController {
   /**
    * すべての従業員を取得します.
    *
-   * @return <{@link EmployeeResponse}>.
+   * @return すべての従業員情報を含むAllEmployeeResponse
    */
   @GetMapping("v1/employees")
   @ResponseStatus(HttpStatus.OK)
@@ -66,7 +65,7 @@ public class EmployeeRestController {
    * 指定したIDを持つ従業員の情報を取得します.
    *
    * @param id 取得したい従業員のID
-   * @return <{@link EmployeeResponse}>
+   * @return 取得した従業員情報を含むEmployeeResponse
    */
   @GetMapping("v1/employees/{id}")
   @ResponseStatus(HttpStatus.OK)
@@ -75,9 +74,17 @@ public class EmployeeRestController {
     return EmployeeResponse.createResponse(employee);
   }
 
+  /**
+   * 従業員を新しく作成します.
+   *
+   * @param request 新しい従業員の情報を含むリクエストデータ
+   * @return 作成された従業員のURIを含むレスポンス
+   */
   @PostMapping("v1/employees")
   @ResponseStatus(HttpStatus.CREATED)
-  public ResponseEntity<Void> insertEmployee(@RequestBody @Validated CreateEmployeeRequest request) {
+  public ResponseEntity<Void> insertEmployee(
+      @RequestBody @Validated CreateEmployeeRequest request
+  ) {
     Employee employee = createEmployeeUseCase.createEmployee(
       new InsertEmployeeData(request.firstName(), request.lastName())
     );
@@ -91,12 +98,28 @@ public class EmployeeRestController {
     return ResponseEntity.created(location).build();
   }
 
+  /**
+   * 従業員の情報を部分的に更新します.
+   *
+   * @param id 更新したい従業員のID
+   * @param request 更新する情報を含むリクエストデータ
+   */
   @PatchMapping("v1/employees/{id}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  public void updateEmployee(@PathVariable("id") String id, @RequestBody UpdateEmployeeRequest request) {
-    updateEmployeeUseCase.update(new UpdateEmployeeData(id, request.firstName(), request.lastName()));
+  public void updateEmployee(
+      @PathVariable("id") String id,
+      @RequestBody UpdateEmployeeRequest request
+  ) {
+    updateEmployeeUseCase.update(
+      new UpdateEmployeeData(id, request.firstName(), request.lastName())
+    );
   }
 
+  /**
+   * 指定したIDの従業員情報を削除します.
+   *
+   * @param id 削除したい従業員のID
+   */
   @DeleteMapping("v1/employees/{id}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public void deleteEmployee(@PathVariable("id") String id) {

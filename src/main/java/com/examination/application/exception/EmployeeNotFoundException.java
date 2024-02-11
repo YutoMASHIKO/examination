@@ -4,7 +4,6 @@ import lombok.Getter;
 
 /**
  * 特定のIDの従業員が見つからなかった際にスローされる例外です.
- *
  */
 @Getter
 public class EmployeeNotFoundException extends RuntimeException {
@@ -13,6 +12,11 @@ public class EmployeeNotFoundException extends RuntimeException {
    */
   private final String id;
 
+  /**
+   * 見つからなかった従業員IDを用いてEmployeeNotFoundExceptionを初期化します.
+   *
+   * @param id 見つからなかった従業員ID
+   */
   public EmployeeNotFoundException(String id) {
     super(id);
     this.id = id;

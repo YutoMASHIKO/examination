@@ -72,7 +72,6 @@ class EmployeeRestControllerTest {
       .when()
       .get("/v1/employees")
       .then()
-      .log().all()
       .status(HttpStatus.OK)
       .body("employees[0].id", equalTo("1"))
       .body("employees[0].firstName", equalTo("Taro"))
