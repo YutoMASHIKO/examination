@@ -12,6 +12,9 @@ public record UpdateEmployeeData(String id, String firstName, String lastName) {
     }
 
     String updatedFirstName = employee.firstName();
+    if (nonNull(firstName)) {
+      updatedFirstName = firstName;
+    }
 
     return new Employee(id, updatedFirstName, updatedLastName);
   }
