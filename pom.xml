@@ -21,6 +21,7 @@
 		<database-rider.version>1.41.0</database-rider.version>
 		<flywaydb.version>9.22.3</flywaydb.version>
 		<mybatis.version>3.0.3</mybatis.version>
+		<commons-lang3.version>3.14.0</commons-lang3.version>
 	</properties>
 
 	<dependencies>
@@ -45,6 +46,11 @@
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>${mybatis.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commons-lang3.version}</version>
 		</dependency>
 
 		<dependency>

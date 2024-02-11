@@ -3,11 +3,10 @@ package com.examination.domain;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
 class EmployeeTest {
-  @ParameterizedTest(name = "{3}場合")
+  @ParameterizedTest(name = "{2} の場合")
   @CsvSource(delimiter = '|', textBlock = """
             #         ID |                 MESSAGE                 | TESTNAME
                          |                 従業員IDが数字ではありません |従業員IDがnull
