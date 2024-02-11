@@ -30,4 +30,16 @@ class UpdateEmployeeDataTest {
 
     assertEquals(expected, actual);
   }
+
+  @Test
+  void 名のみ更新する場合() {
+    UpdateEmployeeData sut = new UpdateEmployeeData("1", "Ichiro", null);
+    Employee originalEmployee = new Employee("1", "Jiro", "Yamada");
+
+    Employee expected = new Employee("1", "Ichiro", "Yamada");
+
+    Employee actual = sut.convert(originalEmployee);
+
+    assertEquals(expected, actual);
+  }
 }
