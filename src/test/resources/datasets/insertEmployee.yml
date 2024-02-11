@@ -6,5 +6,5 @@ employees:
     first_name: "Jiro"
     last_name: "Yamada"
   - id: "3"
-    firstName: "Hanako",
-    lastName: "Shirato"
+    first_name: "Hanako"
+    last_name: "Shirato"
