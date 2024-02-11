@@ -120,6 +120,6 @@ class EmployeeRestControllerTest {
       .post("/v1/employees")
       .then()
       .statusCode(201)
-      .header("Location", equalTo("http://localhost:8080/v1/employees/3"));
+      .header("Location", equalTo("http://localhost/v1/employees/3"));
   }
 }
