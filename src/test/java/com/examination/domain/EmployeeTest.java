@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.assertj.core.api.Assertions.*;
 
 class EmployeeTest {
-  private static final String LONG_NAME = "abcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcde";
+  private static final String LONG_NAME = "abcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdef";
 
   @ParameterizedTest(name = "{2} の場合")
   @CsvSource(delimiter = '|', textBlock = """
@@ -33,7 +33,7 @@ class EmployeeTest {
 
   @Test
   void 従業員の名字が100文字以上の場合() {
-    assertThatThrownBy(() -> new Employee("1", LONG_NAME, "Yamada"))
+    assertThatThrownBy(() -> new Employee("1", "Taro", LONG_NAME))
       .isInstanceOf(IllegalArgumentException.class)
       .hasMessage("従業員の名字が100文字を超えています");
   }
