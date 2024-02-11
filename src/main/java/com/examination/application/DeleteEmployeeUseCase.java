@@ -8,4 +8,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class DeleteEmployeeUseCase {
   private final EmployeeRepository employeeRepository;
+
+  public void deleteEmployee(String id) {
+    employeeRepository.deleteEmployee(id);
+  }
 }
