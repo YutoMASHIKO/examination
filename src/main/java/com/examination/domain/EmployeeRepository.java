@@ -6,4 +6,6 @@ public interface EmployeeRepository {
   List<Employee> getAllEmployees();
 
   Employee getEmployeeById(String id);
+
+  Long getNextId();
 }

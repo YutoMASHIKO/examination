@@ -22,4 +22,9 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
   public Employee getEmployeeById(String id) {
     return employeeMapper.getEmployeeById(id).convert();
   }
+
+  @Override
+  public Long getNextId() {
+    return employeeMapper.getNextId();
+  }
 }
