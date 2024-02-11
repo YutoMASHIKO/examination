@@ -89,4 +89,11 @@ class EmployeeRepositoryImplTest {
 
     assertDoesNotThrow(() -> sut.updateEmployee(employee));
   }
+
+  @Test
+  void 従業員の削除を行う場合() {
+    when(employeeMapper.delete("1")).thenReturn(1);
+
+    assertDoesNotThrow(() -> sut.deleteEmployee("1"));
+  }
 }
