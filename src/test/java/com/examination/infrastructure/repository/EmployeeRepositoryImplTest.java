@@ -1,6 +1,7 @@
 package com.examination.infrastructure.repository;
 
 import com.examination.domain.Employee;
+import com.examination.infrastructure.entity.EmployeeEntity;
 import com.examination.infrastructure.mapper.EmployeeMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,8 +31,8 @@ class EmployeeRepositoryImplTest {
     when(employeeMapper.getAllEmployees())
       .thenReturn(
         List.of(
-          new Employee("1", "Taro", "Yamada"),
-          new Employee("2", "Jiro", "Yamada")
+          new EmployeeEntity("1", "Taro", "Yamada"),
+          new EmployeeEntity("2", "Jiro", "Yamada")
         )
       );
 
@@ -48,7 +49,7 @@ class EmployeeRepositoryImplTest {
   @Test
   void 個別取得をする場合() {
     when(employeeMapper.getEmployeeById("3"))
-      .thenReturn(new Employee("3", "Taro", "Tanaka"));
+      .thenReturn(new EmployeeEntity("3", "Taro", "Tanaka"));
 
     Employee expected = new Employee("3", "Taro", "Tanaka");
 

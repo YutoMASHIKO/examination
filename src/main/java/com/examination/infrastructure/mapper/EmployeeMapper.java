@@ -1,8 +1,8 @@
 package com.examination.infrastructure.mapper;
 
-import com.examination.domain.Employee;
-import java.util.List;
 
+import com.examination.infrastructure.entity.EmployeeEntity;
+import java.util.List;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -10,11 +10,11 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface EmployeeMapper {
   @Select("SELECT id, first_name, last_name FROM employees")
-  List<Employee> getAllEmployees();
+  List<EmployeeEntity> getAllEmployees();
 
   @Select("SELECT id, first_name, last_name FROM employees WHERE id = #{id}")
-  Employee getEmployeeById(String id);
+  EmployeeEntity getEmployeeById(String id);
 
   @Insert("INSERT INTO employees (id, first_name, last_name) VALUES(#{id}, #{firstName}, #{lastName})")
-  Integer insert(Employee employee);
+  Integer insert(EmployeeEntity employeeEntity);
 }

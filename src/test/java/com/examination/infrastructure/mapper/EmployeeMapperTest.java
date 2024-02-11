@@ -3,7 +3,7 @@ package com.examination.infrastructure.mapper;
 import java.sql.DriverManager;
 import java.util.List;
 
-import com.examination.domain.Employee;
+import com.examination.infrastructure.entity.EmployeeEntity;
 import com.github.database.rider.core.api.configuration.DBUnit;
 import com.github.database.rider.core.api.connection.ConnectionHolder;
 import com.github.database.rider.core.api.dataset.DataSet;
@@ -39,12 +39,12 @@ class EmployeeMapperTest {
   @Test
   @DataSet(value = "datasets/employees.yml")
   void 全件取得をする場合() {
-    List<Employee> actual = sut.getAllEmployees();
-
-    List<Employee> expected = List.of(
-      new Employee("1", "Taro", "Yamada"),
-      new Employee("2", "Jiro", "Yamada")
+    List<EmployeeEntity> expected = List.of(
+      new EmployeeEntity("1", "Taro", "Yamada"),
+      new EmployeeEntity("2", "Jiro", "Yamada")
     );
+
+    List<EmployeeEntity> actual = sut.getAllEmployees();
 
     assertEquals(actual, expected);
   }
@@ -52,9 +52,9 @@ class EmployeeMapperTest {
   @Test
   @DataSet(value = "datasets/employee.yml")
   void idにより個別に社員情報を取得する場合() {
-    Employee actual = sut.getEmployeeById("1");
+    EmployeeEntity expected = new EmployeeEntity("1", "Taro", "Tanaka");
 
-    Employee expected = new Employee("1", "Taro", "Tanaka");
+    EmployeeEntity actual = sut.getEmployeeById("1");
 
     assertEquals(expected, actual);
   }
@@ -63,7 +63,7 @@ class EmployeeMapperTest {
   @DataSet(value = "datasets/employees.yml")
   @ExpectedDataSet(value = "datasets/insertEmployee.yml")
   void 従業員の新規登録をする場合() {
-    Integer actual = sut.insert(new Employee("3", "Hanako", "Shirato"));
+    Integer actual = sut.insert(new EmployeeEntity("3", "Hanako", "Shirato"));
 
     assertEquals(1, actual);
   }
