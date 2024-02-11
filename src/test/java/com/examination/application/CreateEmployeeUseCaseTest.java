@@ -33,7 +33,7 @@ class CreateEmployeeUseCaseTest {
 
     Employee expected = new Employee("3", "Hanako", "Shirato");
 
-    Employee actual = sut.createEmployee();
+    Employee actual = sut.createEmployee(new CreateEmployee("Hanako", "Shirato"));
 
     assertEquals(expected, actual);
   }
