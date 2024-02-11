@@ -1,4 +1,4 @@
-package com.examination.application;
+package com.examination.application.data;
 
 public record InsertEmployeeData(String firstName, String lastName) {
 }

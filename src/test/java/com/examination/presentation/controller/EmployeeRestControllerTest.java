@@ -3,7 +3,7 @@ package com.examination.presentation.controller;
 import com.examination.application.CreateEmployeeUseCase;
 import com.examination.application.GetAllEmployeesUseCase;
 import com.examination.application.GetEmployeeUseCase;
-import com.examination.application.InsertEmployeeData;
+import com.examination.application.data.InsertEmployeeData;
 import com.examination.domain.Employee;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.jupiter.api.BeforeEach;

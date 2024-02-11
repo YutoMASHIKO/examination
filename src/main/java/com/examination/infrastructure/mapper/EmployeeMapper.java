@@ -25,5 +25,5 @@ public interface EmployeeMapper {
   Integer insert(EmployeeEntity employeeEntity);
 
   @Update("UPDATE employees SET first_name = #{firstName}, last_name = #{lastName} WHERE id = #{id}")
-  int update(EmployeeEntity employeeEntity);
+  Integer update(EmployeeEntity employeeEntity);
 }

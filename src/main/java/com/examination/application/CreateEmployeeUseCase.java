@@ -1,5 +1,6 @@
 package com.examination.application;
 
+import com.examination.application.data.InsertEmployeeData;
 import com.examination.domain.Employee;
 import com.examination.domain.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
