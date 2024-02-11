@@ -37,4 +37,9 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
   public void updateEmployee(Employee employee) {
 
   }
+
+  @Override
+  public void deleteEmployee(String id) {
+
+  }
 }
