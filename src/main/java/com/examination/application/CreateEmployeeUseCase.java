@@ -17,17 +17,12 @@ public class CreateEmployeeUseCase {
   /**
    * 従業員データを基に従業員を新規登録します.
    *
-   * @param employee 新規登録する従業員データ
+   * @param insertEmployeeData 新規登録する従業員データ
    * @return 作成された新規従業員情報
    */
-  public Employee createEmployee(InsertEmployeeData employee) {
+  public Employee createEmployee(InsertEmployeeData insertEmployeeData) {
     return employeeRepository.createEmployee(
-      new Employee(
-        employeeRepository.getNextId().toString(),
-        employee.firstName(),
-        employee.lastName()
-      )
+      insertEmployeeData.convert(employeeRepository.getNextId())
     );
   }
-
 }
