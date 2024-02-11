@@ -1,4 +1,4 @@
-package com.examination.application;
+package com.examination.application.exception;
 
 import lombok.Getter;
 

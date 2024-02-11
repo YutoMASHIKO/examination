@@ -3,10 +3,12 @@ package com.examination.infrastructure.repository;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 import com.examination.domain.Employee;
 import com.examination.infrastructure.entity.EmployeeEntity;
+import com.examination.infrastructure.exception.SqlExecutionException;
 import com.examination.infrastructure.mapper.EmployeeMapper;
 import java.util.List;
 import java.util.Optional;
@@ -84,32 +86,71 @@ class EmployeeRepositoryImplTest {
     assertEquals(3L, actual);
   }
 
-  @Test
-  void 従業員の新規登録をする場合() {
-    when(employeeMapper.insert(new EmployeeEntity("3", "Hanako", "Shirato")))
-      .thenReturn(1);
+  @Nested
+  class 従業員の新規登録 {
+    @Test
+    void 従業員の新規登録に成功する場合() {
+      when(employeeMapper.insert(new EmployeeEntity("3", "Hanako", "Shirato")))
+        .thenReturn(1);
 
-    Employee expected = new Employee("3", "Hanako", "Shirato");
+      Employee expected = new Employee("3", "Hanako", "Shirato");
 
-    Employee actual = sut.createEmployee(new Employee("3", "Hanako", "Shirato"));
+      Employee actual = sut.createEmployee(new Employee("3", "Hanako", "Shirato"));
 
-    assertEquals(expected, actual);
+      assertEquals(expected, actual);
+    }
+
+    @Test
+    void 従業員の新規登録に失敗する場合() {
+      when(employeeMapper.insert(new EmployeeEntity("3", "Hanako", "Shirato")))
+        .thenReturn(0);
+
+      Employee employee = new Employee("3", "Hanako", "Shirato");
+
+      assertThrows(SqlExecutionException.class,
+        () -> sut.createEmployee(employee));
+    }
   }
 
-  @Test
-  void 従業員の更新を行う場合() {
-    when(employeeMapper.update(new EmployeeEntity("1", "Taro", "Tanaka")))
-      .thenReturn(1);
+  @Nested
+  class 従業員の更新 {
+    @Test
+    void 従業員の更新に成功する場合() {
+      when(employeeMapper.update(new EmployeeEntity("1", "Taro", "Tanaka")))
+        .thenReturn(1);
 
-    Employee employee = new Employee("1", "Taro", "Tanaka");
+      Employee employee = new Employee("1", "Taro", "Tanaka");
 
-    assertDoesNotThrow(() -> sut.updateEmployee(employee));
+      assertDoesNotThrow(() -> sut.updateEmployee(employee));
+    }
+
+    @Test
+    void 従業員の更新に失敗する場合() {
+      when(employeeMapper.update(new EmployeeEntity("1", "Taro", "Tanaka")))
+        .thenReturn(0);
+
+      Employee employee = new Employee("1", "Taro", "Tanaka");
+
+      assertThrows(SqlExecutionException.class,
+        () -> sut.updateEmployee(employee));
+    }
   }
 
-  @Test
-  void 従業員の削除を行う場合() {
-    when(employeeMapper.delete("1")).thenReturn(1);
+  @Nested
+  class 従業員の削除 {
+    @Test
+    void 従業員の削除に成功する場合() {
+      when(employeeMapper.delete("1")).thenReturn(1);
 
-    assertDoesNotThrow(() -> sut.deleteEmployee("1"));
+      assertDoesNotThrow(() -> sut.deleteEmployee("1"));
+    }
+
+    @Test
+    void 従業員の削除に失敗する場合() {
+      when(employeeMapper.delete("0")).thenReturn(0);
+
+      assertThrows(SqlExecutionException.class,
+        () -> sut.deleteEmployee("0"));
+    }
   }
 }

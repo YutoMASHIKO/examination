@@ -1,6 +1,7 @@
 package com.examination.application;
 
 import com.examination.application.data.UpdateEmployeeData;
+import com.examination.application.exception.EmployeeNotFoundException;
 import com.examination.domain.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

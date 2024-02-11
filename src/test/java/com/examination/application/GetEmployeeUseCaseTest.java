@@ -3,6 +3,7 @@ package com.examination.application;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
+import com.examination.application.exception.EmployeeNotFoundException;
 import com.examination.domain.Employee;
 import com.examination.domain.EmployeeRepository;
 import java.util.Optional;

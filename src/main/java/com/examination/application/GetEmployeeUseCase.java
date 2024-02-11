@@ -1,5 +1,6 @@
 package com.examination.application;
 
+import com.examination.application.exception.EmployeeNotFoundException;
 import com.examination.domain.Employee;
 import com.examination.domain.EmployeeRepository;
 import lombok.RequiredArgsConstructor;

@@ -2,7 +2,7 @@ package com.examination.common;
 
 import static java.util.Collections.emptyList;
 
-import com.examination.application.EmployeeNotFoundException;
+import com.examination.application.exception.EmployeeNotFoundException;
 import com.examination.presentation.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
