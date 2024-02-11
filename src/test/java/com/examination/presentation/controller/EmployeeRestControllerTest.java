@@ -140,7 +140,8 @@ class EmployeeRestControllerTest {
       .when()
       .patch("/v1/employees/1")
       .then()
-      .status(HttpStatus.NO_CONTENT);
+      .status(HttpStatus.NO_CONTENT)
+      .body(equalTo(""));
   }
 
   @Test
@@ -149,6 +150,7 @@ class EmployeeRestControllerTest {
       .when()
       .delete("/v1/employees/1")
       .then()
-      .status(HttpStatus.NO_CONTENT);
+      .status(HttpStatus.NO_CONTENT)
+      .body(equalTo(""));
   }
 }
