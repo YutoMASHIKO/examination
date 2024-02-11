@@ -1,6 +1,7 @@
 package com.examination.presentation.controller;
 
 import com.examination.application.CreateEmployeeUseCase;
+import com.examination.application.DeleteEmployeeUseCase;
 import com.examination.application.GetAllEmployeesUseCase;
 import com.examination.application.GetEmployeeUseCase;
 import com.examination.application.UpdateEmployeeUseCase;
@@ -39,6 +40,9 @@ class EmployeeRestControllerTest {
 
   @MockBean
   UpdateEmployeeUseCase updateEmployeeUseCase;
+
+  @MockBean
+  DeleteEmployeeUseCase deleteEmployeeUseCase;
 
   @BeforeEach
   void setup() {
@@ -135,6 +139,15 @@ class EmployeeRestControllerTest {
       .body(new UpdateEmployeeRequest("Hanako", "Shirato"))
       .when()
       .patch("/v1/employees/1")
+      .then()
+      .status(HttpStatus.NO_CONTENT);
+  }
+
+  @Test
+  void 社員の削除を行う場合() {
+    given()
+      .when()
+      .delete("/v1/employees/1")
       .then()
       .status(HttpStatus.NO_CONTENT);
   }
