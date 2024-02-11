@@ -3,8 +3,10 @@ package com.examination.presentation.controller;
 import com.examination.application.CreateEmployeeUseCase;
 import com.examination.application.GetAllEmployeesUseCase;
 import com.examination.application.GetEmployeeUseCase;
+import com.examination.application.UpdateEmployeeUseCase;
 import com.examination.application.data.InsertEmployeeData;
 import com.examination.domain.Employee;
+import com.examination.presentation.request.UpdateEmployeeRequest;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,6 +36,9 @@ class EmployeeRestControllerTest {
 
   @MockBean
   CreateEmployeeUseCase createEmployeeUseCase;
+
+  @MockBean
+  UpdateEmployeeUseCase updateEmployeeUseCase;
 
   @BeforeEach
   void setup() {
@@ -121,5 +126,16 @@ class EmployeeRestControllerTest {
       .then()
       .statusCode(201)
       .header("Location", equalTo("http://localhost/v1/employees/3"));
+  }
+
+  @Test
+  void 社員の更新を行う場合() {
+    given()
+      .contentType(MediaType.APPLICATION_JSON_VALUE)
+      .body(new UpdateEmployeeRequest("Hanako", "Shirato"))
+      .when()
+      .patch("/v1/employees/1")
+      .then()
+      .status(HttpStatus.NO_CONTENT);
   }
 }
