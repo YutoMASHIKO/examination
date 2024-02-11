@@ -69,9 +69,20 @@ class EmployeeMapperTest {
 
   @Test
   @DataSet(value = "datasets/employees.yml")
-  @ExpectedDataSet(value = "datasets/insertEmployee.yml")
+  @ExpectedDataSet(value = "datasets/insert-employee.yml")
   void 従業員の新規登録をする場合() {
     Integer actual = sut.insert(new EmployeeEntity("3", "Hanako", "Shirato"));
+
+    assertEquals(1, actual);
+  }
+
+  @Test
+  @DataSet(value = "datasets/employees.yml")
+  @ExpectedDataSet(value = "datasets/update-employee.yml")
+  void 従業員の更新を行う場合() {
+    EmployeeEntity employeeEntity = new EmployeeEntity("1", "Taro", "Tanaka");
+
+    Integer actual = sut.update();
 
     assertEquals(1, actual);
   }
