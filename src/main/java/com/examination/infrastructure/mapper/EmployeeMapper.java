@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 @Mapper
 public interface EmployeeMapper {
@@ -22,4 +23,7 @@ public interface EmployeeMapper {
 
   @Insert("INSERT INTO employees (id, first_name, last_name) VALUES(#{id}, #{firstName}, #{lastName})")
   Integer insert(EmployeeEntity employeeEntity);
+
+  @Update("UPDATE employees SET first_name = #{firstName}, last_name = #{lastName} WHERE id = #{id}")
+  int update(EmployeeEntity employeeEntity);
 }

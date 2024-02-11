@@ -82,7 +82,7 @@ class EmployeeMapperTest {
   void 従業員の更新を行う場合() {
     EmployeeEntity employeeEntity = new EmployeeEntity("1", "Taro", "Tanaka");
 
-    Integer actual = sut.update();
+    Integer actual = sut.update(employeeEntity);
 
     assertEquals(1, actual);
   }
