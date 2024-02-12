@@ -10,6 +10,7 @@ import com.examination.domain.Employee;
  * @param lastName  従業員の名字
  */
 public record EmployeeResponse(String id, String firstName, String lastName) {
+
   /**
    * EmployeeResponseを作成します.
    *

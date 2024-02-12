@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class CreateEmployeeUseCase {
+
   private final EmployeeRepository employeeRepository;
 
   /**
@@ -24,7 +25,7 @@ public class CreateEmployeeUseCase {
   @Transactional
   public Employee createEmployee(InsertEmployeeData insertEmployeeData) {
     return employeeRepository.createEmployee(
-      insertEmployeeData.convert(employeeRepository.getNextId())
+        insertEmployeeData.convert(employeeRepository.getNextId())
     );
   }
 }

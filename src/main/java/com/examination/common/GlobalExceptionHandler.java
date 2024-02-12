@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
   /**
    * idによる検索に失敗した場合の例外ハンドリングメソッドです.
    *
@@ -28,17 +29,17 @@ public class GlobalExceptionHandler {
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   public ErrorResponse handleEmployeeNotFoundException(EmployeeNotFoundException e) {
     return new ErrorResponse(
-      "0003",
-      String.format("specified employee [id = %s] is not found.", e.getId()),
-      emptyList()
-      );
+        "0003",
+        String.format("specified employee [id = %s] is not found.", e.getId()),
+        emptyList()
+    );
   }
 
   /**
    * リクエストの入力に問題があった場合の例外ハンドリングメソッドです.
    *
    * @param e リクエストの入力に問題があった場合に発生する例外
-   * @return  バリデーションエラーに関する詳細情報を含むエラーレスポンス
+   * @return バリデーションエラーに関する詳細情報を含むエラーレスポンス
    */
   @ExceptionHandler
   @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -49,9 +50,9 @@ public class GlobalExceptionHandler {
       details.add(String.format("%s %s", error.getField(), error.getDefaultMessage()));
     }
     return new ErrorResponse(
-      "0002",
-      "request validation error is occurred.",
-      details
+        "0002",
+        "request validation error is occurred.",
+        details
     );
   }
 }

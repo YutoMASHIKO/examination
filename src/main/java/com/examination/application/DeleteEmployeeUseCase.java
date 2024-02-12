@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class DeleteEmployeeUseCase {
+
   private final EmployeeRepository employeeRepository;
 
   /**

@@ -1,6 +1,7 @@
 package com.examination.application;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 import com.examination.application.exception.EmployeeNotFoundException;
@@ -14,6 +15,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 class GetEmployeeUseCaseTest {
+
   @InjectMocks
   GetEmployeeUseCase sut;
 
@@ -28,7 +30,7 @@ class GetEmployeeUseCaseTest {
   @Test
   void 指定したIDの従業員情報を取得できる場合() {
     when(employeeRepository.getEmployeeById("1"))
-      .thenReturn(Optional.of(new Employee("1", "Taro", "Yamada")));
+        .thenReturn(Optional.of(new Employee("1", "Taro", "Yamada")));
 
     Employee expected = new Employee("1", "Taro", "Yamada");
 

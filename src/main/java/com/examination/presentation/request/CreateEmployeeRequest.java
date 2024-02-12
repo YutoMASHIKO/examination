@@ -24,4 +24,5 @@ public record CreateEmployeeRequest(
     @JsonProperty("lastName")
     String lastName
 ) {
+
 }

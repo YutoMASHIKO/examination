@@ -1,7 +1,9 @@
 package com.examination.application;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import com.examination.application.data.UpdateEmployeeData;
 import com.examination.application.exception.EmployeeNotFoundException;
@@ -15,6 +17,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 class UpdateEmployeeUseCaseTest {
+
   @InjectMocks
   UpdateEmployeeUseCase sut;
 
@@ -29,14 +32,14 @@ class UpdateEmployeeUseCaseTest {
   @Test
   void 従業員の更新を行う場合() {
     when(employeeRepository.getEmployeeById("1"))
-      .thenReturn(Optional.of(new Employee("1", "Taro", "Yamada")));
+        .thenReturn(Optional.of(new Employee("1", "Taro", "Yamada")));
 
     UpdateEmployeeData updateEmployeeData = new UpdateEmployeeData("1", "Ichiro", "Tanaka");
 
     sut.update(updateEmployeeData);
 
     verify(employeeRepository, times(1))
-      .updateEmployee(updateEmployeeData.convert(new Employee("1", "Taro", "Yamada")));
+        .updateEmployee(updateEmployeeData.convert(new Employee("1", "Taro", "Yamada")));
   }
 
   @Test

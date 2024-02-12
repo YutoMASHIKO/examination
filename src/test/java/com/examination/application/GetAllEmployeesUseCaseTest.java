@@ -1,6 +1,6 @@
 package com.examination.application;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 import com.examination.domain.Employee;
@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 class GetAllEmployeesUseCaseTest {
+
   @InjectMocks
   GetAllEmployeesUseCase sut;
 
@@ -27,16 +28,16 @@ class GetAllEmployeesUseCaseTest {
   @Test
   void 全従業員の情報を取得できる() {
     when(employeeRepository.getAllEmployees())
-      .thenReturn(
-        List.of(
-          new Employee("1", "Taro", "Yamada"),
-          new Employee("2", "Jiro", "Yamada")
-        )
-      );
+        .thenReturn(
+            List.of(
+                new Employee("1", "Taro", "Yamada"),
+                new Employee("2", "Jiro", "Yamada")
+            )
+        );
 
     List<Employee> expected = List.of(
-      new Employee("1", "Taro", "Yamada"),
-      new Employee("2", "Jiro", "Yamada")
+        new Employee("1", "Taro", "Yamada"),
+        new Employee("2", "Jiro", "Yamada")
     );
 
     List<Employee> actual = sut.findAllEmployee();

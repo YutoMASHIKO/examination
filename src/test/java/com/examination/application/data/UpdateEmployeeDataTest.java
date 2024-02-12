@@ -1,9 +1,9 @@
 package com.examination.application.data;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.examination.domain.Employee;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class UpdateEmployeeDataTest {
 

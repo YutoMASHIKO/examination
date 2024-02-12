@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class GetEmployeeUseCase {
+
   private final EmployeeRepository employeeRepository;
 
   /**
@@ -23,6 +24,6 @@ public class GetEmployeeUseCase {
    */
   public Employee getEmployeeById(String id) {
     return employeeRepository.getEmployeeById(id)
-      .orElseThrow(() -> new EmployeeNotFoundException(id));
+        .orElseThrow(() -> new EmployeeNotFoundException(id));
   }
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class GetAllEmployeesUseCase {
+
   private final EmployeeRepository employeeRepository;
 
   /**

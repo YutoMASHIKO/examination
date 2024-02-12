@@ -7,6 +7,7 @@ import lombok.Getter;
  */
 @Getter
 public class EmployeeNotFoundException extends RuntimeException {
+
   /**
    * 見つからなかった従業員のID.
    */

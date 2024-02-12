@@ -10,4 +10,5 @@ import java.util.List;
  * @param details エラーの詳細情報のリスト
  */
 public record ErrorResponse(String code, String message, List<String> details) {
+
 }

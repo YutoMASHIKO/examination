@@ -1,5 +1,6 @@
 package com.examination.application;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 import com.examination.application.data.InsertEmployeeData;
@@ -11,9 +12,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class CreateEmployeeDataUseCaseTest {
+
   @InjectMocks
   CreateEmployeeUseCase sut;
 
@@ -30,7 +30,7 @@ class CreateEmployeeDataUseCaseTest {
     when(employeeRepository.getNextId()).thenReturn(3L);
 
     when(employeeRepository.createEmployee(new Employee("3", "Hanako", "Shirato")))
-      .thenReturn(new Employee("3", "Hanako", "Shirato"));
+        .thenReturn(new Employee("3", "Hanako", "Shirato"));
 
     Employee expected = new Employee("3", "Hanako", "Shirato");
 

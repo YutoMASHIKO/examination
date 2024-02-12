@@ -9,12 +9,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class ExaminationApplicationTests {
-	@Autowired
-	private EmployeeRestController employeeRestController;
 
-	@Test
-	void contextLoads() {
-		assertThat(employeeRestController).isNotNull();
-	}
+  @Autowired
+  private EmployeeRestController employeeRestController;
+
+  @Test
+  void contextLoads() {
+    assertThat(employeeRestController).isNotNull();
+  }
 
 }

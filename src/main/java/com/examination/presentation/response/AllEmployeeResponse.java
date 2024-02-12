@@ -18,7 +18,7 @@ public record AllEmployeeResponse(List<EmployeeResponse> employees) {
    */
   public static AllEmployeeResponse createResponse(List<Employee> employeeList) {
     return new AllEmployeeResponse(
-      employeeList.stream().map(EmployeeResponse::createResponse).toList()
+        employeeList.stream().map(EmployeeResponse::createResponse).toList()
     );
   }
 }

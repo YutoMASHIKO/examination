@@ -14,6 +14,7 @@ public record Employee(String id, String firstName, String lastName) {
 
   /**
    * Employeeを初期化します.
+   *
    * @param id        従業員ID。1から9999999999の数字であり、nullであってはなりません。
    * @param firstName 従業員の名前。
    * @param lastName  従業員の名字。

@@ -35,6 +35,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @RequestMapping("/")
 @RequiredArgsConstructor
 public class EmployeeRestController {
+
   private final GetAllEmployeesUseCase getAllEmployeesUseCase;
   private final GetEmployeeUseCase getEmployeeUseCase;
   private final CreateEmployeeUseCase createEmployeeUseCase;
@@ -86,7 +87,7 @@ public class EmployeeRestController {
       @RequestBody @Validated CreateEmployeeRequest request
   ) {
     Employee employee = createEmployeeUseCase.createEmployee(
-      new InsertEmployeeData(request.firstName(), request.lastName())
+        new InsertEmployeeData(request.firstName(), request.lastName())
     );
 
     URI location = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -101,7 +102,7 @@ public class EmployeeRestController {
   /**
    * 従業員の情報を部分的に更新します.
    *
-   * @param id 更新したい従業員のID
+   * @param id      更新したい従業員のID
    * @param request 更新する情報を含むリクエストデータ
    */
   @PatchMapping("v1/employees/{id}")
@@ -111,7 +112,7 @@ public class EmployeeRestController {
       @RequestBody UpdateEmployeeRequest request
   ) {
     updateEmployeeUseCase.update(
-      new UpdateEmployeeData(id, request.firstName(), request.lastName())
+        new UpdateEmployeeData(id, request.firstName(), request.lastName())
     );
   }
 

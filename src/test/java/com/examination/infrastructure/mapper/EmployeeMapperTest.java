@@ -1,7 +1,6 @@
 package com.examination.infrastructure.mapper;
 
-import java.sql.DriverManager;
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.examination.infrastructure.entity.EmployeeEntity;
 import com.github.database.rider.core.api.configuration.DBUnit;
@@ -9,24 +8,25 @@ import com.github.database.rider.core.api.connection.ConnectionHolder;
 import com.github.database.rider.core.api.dataset.DataSet;
 import com.github.database.rider.core.api.dataset.ExpectedDataSet;
 import com.github.database.rider.junit5.api.DBRider;
+import java.sql.DriverManager;
+import java.util.List;
 import org.flywaydb.core.Flyway;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @DBRider
 @DBUnit
 @SpringBootTest
 class EmployeeMapperTest {
+
   private static final String DB_URL = "jdbc:h2:mem:test;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false";
   private static final String DB_USER = "user";
   private static final String DB_PASSWORD = "password";
 
   private static final ConnectionHolder connectionHolder =
-    () -> DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+      () -> DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 
   @Autowired
   EmployeeMapper sut;
@@ -40,8 +40,8 @@ class EmployeeMapperTest {
   @DataSet(value = "datasets/employees.yml")
   void 全件取得をする場合() {
     List<EmployeeEntity> expected = List.of(
-      new EmployeeEntity("1", "Taro", "Yamada"),
-      new EmployeeEntity("2", "Jiro", "Yamada")
+        new EmployeeEntity("1", "Taro", "Yamada"),
+        new EmployeeEntity("2", "Jiro", "Yamada")
     );
 
     List<EmployeeEntity> actual = sut.getAllEmployees();

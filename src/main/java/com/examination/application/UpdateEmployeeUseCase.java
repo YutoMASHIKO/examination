@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class UpdateEmployeeUseCase {
+
   private final EmployeeRepository employeeRepository;
 
   /**
@@ -25,9 +26,9 @@ public class UpdateEmployeeUseCase {
   public void update(UpdateEmployeeData updateEmployeeData) {
     employeeRepository.updateEmployee(
         updateEmployeeData.convert(
-          employeeRepository.getEmployeeById(updateEmployeeData.id())
-            .orElseThrow(() -> new EmployeeNotFoundException(updateEmployeeData.id()))
-      )
+            employeeRepository.getEmployeeById(updateEmployeeData.id())
+                .orElseThrow(() -> new EmployeeNotFoundException(updateEmployeeData.id()))
+        )
     );
   }
 }

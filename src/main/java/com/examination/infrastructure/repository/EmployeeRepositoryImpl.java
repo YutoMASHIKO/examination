@@ -20,6 +20,7 @@ import org.springframework.stereotype.Repository;
 @RequiredArgsConstructor
 @Slf4j
 public class EmployeeRepositoryImpl implements EmployeeRepository {
+
   private final EmployeeMapper employeeMapper;
 
   /**
@@ -54,7 +55,9 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
    */
   @Override
   public Employee createEmployee(Employee employee) {
-    Integer num = employeeMapper.insert(new EmployeeEntity(employee.id(), employee.firstName(), employee.lastName()));
+    Integer num = employeeMapper.insert(
+        new EmployeeEntity(employee.id(), employee.firstName(), employee.lastName())
+    );
     if (isFailedSql(num)) {
       handleSqlExecutionFailure();
     }
@@ -66,7 +69,9 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
    */
   @Override
   public void updateEmployee(Employee employee) {
-    Integer num = employeeMapper.update(new EmployeeEntity(employee.id(), employee.firstName(), employee.lastName()));
+    Integer num = employeeMapper.update(
+        new EmployeeEntity(employee.id(), employee.firstName(), employee.lastName())
+    );
     if (isFailedSql(num)) {
       handleSqlExecutionFailure();
     }
