@@ -47,7 +47,8 @@ public interface EmployeeMapper {
    * @param employeeEntity 新規登録をしたい従業員エンティティ
    * @return 新規登録の件数
    */
-  @Insert("INSERT INTO employees (id, first_name, last_name) VALUES(#{id}, #{firstName}, #{lastName})")
+  @Insert("INSERT INTO employees (id, first_name, last_name) "
+      + "VALUES(#{id}, #{firstName}, #{lastName})")
   Integer insert(EmployeeEntity employeeEntity);
 
   /**
@@ -56,7 +57,8 @@ public interface EmployeeMapper {
    * @param employeeEntity 更新する従業員エンティティ
    * @return 更新した件数
    */
-  @Update("UPDATE employees SET first_name = #{firstName}, last_name = #{lastName} WHERE id = #{id}")
+  @Update("UPDATE employees SET first_name = #{firstName},"
+      + "last_name = #{lastName} WHERE id = #{id}")
   Integer update(EmployeeEntity employeeEntity);
 
   /**
