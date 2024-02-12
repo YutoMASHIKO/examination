@@ -12,13 +12,11 @@ import org.hibernate.validator.constraints.Length;
  * @param lastName  更新する授業員の名字
  */
 public record UpdateEmployeeRequest(
-    @NotBlank
     @Length(max = 100)
     @Pattern(regexp = "^[a-zA-Z]+$")
     @JsonProperty("firstName")
     String firstName,
 
-    @NotBlank
     @Length(max = 100)
     @Pattern(regexp = "^[a-zA-Z]+$")
     @JsonProperty("lastName")
